@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+  - name: staging
+    schema: staging
+    tables:
+      - name: stock_prices_raw
+      - name: stock_anomalies
+      - name: stock_predictions
+      - name: stock_insights
+
+models:
+  - name: stg_stock_prices
+    description: "Cleaned stock price data with derived daily_range and mid_price columns."
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+          - unique
+      - name: trade_date
+        tests:
+          - not_null
+          - unique
+      - name: close_price
+        tests:
+          - not_null
+          - unique
+
+  - name: stg_stock_anomalies
+    description: "Anomaly detection results with human-readable anomaly_label."
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null
+      - name: is_anomaly
+        tests:
+          - not_null
+
+  - name: fct_stock_daily_summary
+    description: "Master fact table combining OHLCV prices, anomaly flags, AI predictions, and market insights."
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null
+
+  - name: fct_anomaly_summary
+    description: "Aggregated anomaly statistics per ticker including rate, last occurrence, and average score."
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+
+  - name: fct_prediction_accuracy
+    description: "Compares predicted closing prices against actuals to measure Prophet forecast accuracy."
+    columns:
+      - name: ticker
+        tests:
+          - not_null
+      - name: trade_date
+        tests:
+          - not_null

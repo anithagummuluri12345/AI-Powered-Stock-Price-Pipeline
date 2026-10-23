@@ -1,0 +1,31 @@
+name: 'stock_pipeline'
+version: '1.0.0'
+config-version: 2
+
+profile: 'stock_pipeline'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  stock_pipeline:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+
+# Snowflake target config (profile: stock_pipeline_snowflake)
+# Run with: dbt run --profile stock_pipeline_snowflake --target dev
+# staging models -> materialized as view in Snowflake
+# marts models   -> materialized as table in Snowflake
