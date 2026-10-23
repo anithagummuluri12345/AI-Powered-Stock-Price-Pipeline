@@ -1,7 +1,5 @@
 # 🤖 AI-Powered Stock Price Pipeline
 
-[![CI Pipeline](https://github.com/Divya-yaramala/stock-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Divya-yaramala/stock-pipeline/actions/workflows/ci.yml)
-[![Code Quality](https://github.com/Divya-yaramala/stock-pipeline/actions/workflows/code-quality.yml/badge.svg)](https://github.com/Divya-yaramala/stock-pipeline/actions/workflows/code-quality.yml)
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![Tests](https://img.shields.io/badge/tests-722%2B%20passing-brightgreen)
 ![Modules](https://img.shields.io/badge/modules-115%2B-orange)
@@ -173,7 +171,7 @@ pytest tests/ --cov=ingestion --cov-report=html
 python scripts/validate_secrets.py
 
 # 1. Clone the repository
-git clone https://github.com/Divya-yaramala/stock-pipeline.git
+git clone https://github.com/anithagummuluri12345/AI-Powered-Stock-Price-Pipeline
 cd stock-pipeline
 
 # 2. Copy environment variables and fill in your credentials
